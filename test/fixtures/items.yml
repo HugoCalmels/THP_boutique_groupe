@@ -3,11 +3,9 @@
 one:
   title: MyString
   description: MyText
-  price: 9.99
-  image_url: MyString
+  price_cents: 1
 
 two:
   title: MyString
   description: MyText
-  price: 9.99
-  image_url: MyString
+  price_cents: 1

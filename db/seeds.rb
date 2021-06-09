@@ -9,9 +9,9 @@
 	20.times do 
     i = Item.create!(
       title: Faker::Mountain.name,
-      price: Faker::Number.decimal(l_digits: 2),
-      description: Faker::Marketing.buzzwords,
-      image_url: Faker::Marketing.buzzwords
+      price_cents: rand(5000..100_000).to_i,
+      description: Faker::Marketing.buzzwords
+
     )
     i.errors.messages
   end

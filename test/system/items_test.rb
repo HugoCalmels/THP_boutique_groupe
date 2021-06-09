@@ -15,8 +15,7 @@ class ItemsTest < ApplicationSystemTestCase
     click_on "New Item"
 
     fill_in "Description", with: @item.description
-    fill_in "Image url", with: @item.image_url
-    fill_in "Price", with: @item.price
+    fill_in "Price cents", with: @item.price_cents
     fill_in "Title", with: @item.title
     click_on "Create Item"
 
@@ -29,8 +28,7 @@ class ItemsTest < ApplicationSystemTestCase
     click_on "Edit", match: :first
 
     fill_in "Description", with: @item.description
-    fill_in "Image url", with: @item.image_url
-    fill_in "Price", with: @item.price
+    fill_in "Price cents", with: @item.price_cents
     fill_in "Title", with: @item.title
     click_on "Update Item"
 

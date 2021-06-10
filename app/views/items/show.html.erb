@@ -71,26 +71,31 @@
 
     <div id="myTabContent" class="tab-content">
       <div class="tab-pane fade show active" id="home">
-        
-      
-        <br>
-          <h4><%= @item.title %></h4>
 
-          <%= image_tag(@item.image) %>
+
+        <br>
+          <h4>titre:<%= @item.title %></h4>
 
           <br>
-          <%= @item.description %>
+          <p>desc :<%= @item.description %></p>
 
           <br></br>
 
-          <h5>Prix :<%= @item.price_cents %></h5>
+          <h5>Prix :<%= number_to_currency @item.price_cents %></h5>
 
-          
+
 
 
 
           </p>
         </div>
+        <div class="tab-pane fade" id="profile">
+        <%= image_tag(@item.image,  :size => "250x200") %>
+
+        <br></br>
+
+
+      </div>
         
     </div>
   </div>

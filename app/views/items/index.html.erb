@@ -46,7 +46,8 @@
             
 
             <div class="flex-container text">
-              <h4 class="card-title">prix : <%= number_to_currency item.price_cents / 100.0 %></h4>
+            <%= image_tag(item.image) if item.image.attached? %>
+              <h4>prix : <%= number_to_currency item.price_cents / 100.0 %></h4>
               <p class="card-text"><%= item.description %></p>
               <%= link_to "View random user", landing_path(item.id), class: 'btn btn-sm btn-outline-secondary'%>
               <%= link_to "Modifier", edit_item_path(item.id), class: 'btn btn-sm btn-outline-secondary'%>

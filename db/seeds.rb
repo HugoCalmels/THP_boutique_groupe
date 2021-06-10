@@ -11,7 +11,7 @@
       title: Faker::Mountain.name,
       price_cents: rand(5000..100_000).to_i,
       description: Faker::Marketing.buzzwords
-
+    
     )
     i.errors.messages
   end

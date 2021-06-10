@@ -7,7 +7,7 @@ class ItemsController < ApplicationController
   # GET /items or /items.json
   def index
     @items = Item.all
-
+    
   end
 
   def add_to_cart

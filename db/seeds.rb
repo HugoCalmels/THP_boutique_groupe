@@ -5,12 +5,18 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+  
 	20.times do 
     i = Item.create!(
       title: Faker::Mountain.name,
       price_cents: rand(5000..100_000).to_i,
       description: Faker::Marketing.buzzwords
+
+    )
+    i.image.attach(
+      io: File.open('app/assets/images/chatm.jpg'),
+      filename: 'chatm.jpg',
+      content_type: 'image/jpeg'
     )
     i.errors.messages
   end
@@ -18,3 +24,4 @@
 puts "%" * 50
 puts "           Base de données remplie !"
 puts "%" * 50
+

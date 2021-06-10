@@ -1,29 +1,64 @@
+<style>
+.create_button {
+  font-weight: 1000;
+  font-size:20px;
+  font-family: "Lucida Console", "Courier New", monospace;
+  background-color: white;
+  border: none;
+  color: black;
+  padding: 30px 200px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 12px;
+  border: 3px solid rgb(124, 124, 124);
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.create_button:hover {
+  background-color: rgb(124, 124, 124);
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  border: 3px solid black;
+} 
+.cart {
+  font-size: 20px;
+}
+</style>
+
+<div class="cart">
 <% if user_signed_in? %>
 <details>
-  <summary>Shopping cart</summary>
+  <summary><strong>Panier :</strong></summary>
   <% if @cart.empty? %>
-  <p>No Items in Cart.</p>
+  <br />
+  <p>Aucun article dans le panier.</p>
   <% else %>
   <ul>
     <% @cart.each do |item| %>
-    <li><%= item.title %>prix :<%= number_to_currency item.price_cents / 100.0 %> - <%= link_to 'remove from cart', remove_from_cart_path(item), method: :delete %> </li>
+    <li><%= item.title %>prix :<%= number_to_currency item.price_cents / 100.0 %> - <%= link_to 'supprimer du panier', remove_from_cart_path(item), method: :delete %> </li>
   <% end %>
   </ul>
   <% end %>
 </details>
 <p id="notice"><%= notice %></p>
+<center><%= button_to "Créer son annonce", new_item_path, :method => "get", class: "create_button" %></center>
 <% else %>
-<p> Vous devez être connecté pour remplir votre panier</p>
+</div>
+<center><p> Veuillez vous identifier pour créer une annonce, ou acheter un animal.</p></center>
 <% end %>
 
+<br />
+<br />
 
+      <center>
+      <h1><strong><u>Chats disponibles</u></strong></h1>  
+      <p><i> certifiés pucés et vaccinés </i><p>  
+      </center    
+    
 <div class="tout1">
   <div class="row row-cols-4 row-cols-sm-5 row-cols-md-8 ">
 
 
-    <div class="col">
-      <h1>Items</h1>         
-    </div>
+    
 
    
   </div>
@@ -39,33 +74,38 @@
         <div class="card border-warning mb-3 cards" style="max-width: 20rem;">
 
           <div class="card-header">
-            <h4><%= item.title %></h4>
+            <center><h4>prénom : <%= item.title %></h4></center>
           </div>
 
           <div class="card-body">
             
             
           <div class="flex-container text">
-          <%= image_tag(item.image,  :size => "250x200")if item.image.attached? %> 
-            <h4 class="card-title">prix : <%= number_to_currency item.price_cents / 100.0 %></h4>
+          <center><%= image_tag(item.image,  :size => "250x200")if item.image.attached? %> </center>
+            <center><h4 class="card-title">prix : <%= number_to_currency item.price_cents / 100.0 %></h4></center>
+            <h6><strong>description :</strong></h6>
             <p class="card-text"><%= item.description %></p>
 
-            <%= link_to 'Supprimer', item, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-secondary'%>
-            <%= link_to "Modifier", edit_item_path(item.id), class: 'btn btn-sm btn-outline-secondary'%>
+            <% if user_signed_in? %>
+
+            <center><%= link_to 'Supprimer', item, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-secondary'%>
+            <%= link_to "Modifier", edit_item_path(item.id), class: 'btn btn-sm btn-outline-secondary'%></center>
             
-            <br></br>
-            <div class="row row-cols-6 row-cols-sm-3 row-cols-md-6">
+          
+            
               <% if @cart.include?(item) %>
-
-              <p><%= button_to 'enlever du panier', remove_from_cart_path(item, :style => "red"), method: :delete %></p> 
-              <% else %>
-              <p><%=  button_to 'ajouter au panier', add_to_cart_path(item.id), method: :post %></p>
-              <% end %>
-
-
-              <%= button_to 'acheter maintenant', checkout_create_path, method: :post, params: {id: item.id}, remote: true %>
-              </div>
-            </div>
+              
+              
+              <center><p><%= button_to 'Retirer du panier', remove_from_cart_path(item, :style => "red"), method: :delete %></p> 
+              </center><% else %>
+              <center><p><%=  button_to 'Ajouter au panier', add_to_cart_path(item.id), method: :post %></p>
+              </center><% end %>
+              
+              <center><%= button_to 'Acheter maintenant', checkout_create_path, method: :post, params: {id: item.id}, remote: true %>
+              </center>
+              
+             
+              <% end %></div>
             </div>
         </div>
       </div>

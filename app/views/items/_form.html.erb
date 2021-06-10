@@ -30,7 +30,7 @@
 </STYLE>
 
 
-<p> YOU HAVE VISITED THIS SITE <%= pluralize @visit_count, 'time'%> </p>
+<p> Merci de renseigner les informations nécessaires à la vente de votre chat </p>
 
 <div class="container imgcgatons">
     <img class="card-img-top" src="https://data.puzzle.be/dino.151/chatons-puzzle-150-pieces.62908-1.fs.jpg" alt="Card image cap">
@@ -38,7 +38,7 @@
 
 <div class="container formulaire_items">
     <div class="field a1">
-      <%= form.label :title %>
+      <%= form.label :prénom %>
       <%= form.text_field :title %>
     </div>
   
@@ -52,7 +52,7 @@
     <br></br>
   
     <div class="field a1">
-      <%= form.label :price_cents %>
+      <%= form.label :prix %>
       <%= form.number_field :price_cents %>
      
     </div>

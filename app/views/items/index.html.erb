@@ -45,25 +45,28 @@
           <div class="card-body">
             
             
+          <div class="flex-container text">
+          <%= image_tag(item.image,  :size => "250x200")if item.image.attached? %> 
+            <h4 class="card-title">prix : <%= number_to_currency item.price_cents %></h4>
+            <p class="card-text"><%= item.description %></p>
 
-            <div class="flex-container text">
-            <%= image_tag(item.image) if item.image.attached? %>
-              <h4>prix : <%= number_to_currency item.price_cents / 100.0 %></h4>
-              <p class="card-text"><%= item.description %></p>
-              <%= link_to "View random user", landing_path(item.id), class: 'btn btn-sm btn-outline-secondary'%>
-              <%= link_to "Modifier", edit_item_path(item.id), class: 'btn btn-sm btn-outline-secondary'%>
-              <%= link_to "User", edit_item_path(item.id), class: 'btn btn-sm btn-outline-secondary'%>
-
+            <%= link_to 'Supprimer', item, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-secondary'%>
+            <%= link_to "Modifier", edit_item_path(item.id), class: 'btn btn-sm btn-outline-secondary'%>
+            
+            <br></br>
+            <div class="row row-cols-6 row-cols-sm-3 row-cols-md-6">
               <% if @cart.include?(item) %>
-              <p><%= button_to 'remove from cart', remove_from_cart_path(item), method: :delete %></p> 
+
+              <p><%= button_to 'enlever du panier', remove_from_cart_path(item, :style => "red"), method: :delete %></p> 
               <% else %>
-              <p><%= link_to 'add to cart', add_to_cart_path(item.id), method: :post %></p>
+              <p><%=  button_to 'ajouter au panier', add_to_cart_path(item.id), method: :post %></p>
               <% end %>
 
-              <%= button_to 'buy now', checkout_create_path, method: :post, params: {id: item.id}, remote: true %>
-            </div>
 
-          </div>
+              <%= button_to 'acheter maintenant', checkout_create_path, method: :post, params: {id: item.id}, remote: true %>
+              </div>
+            </div>
+            </div>
         </div>
       </div>
       
@@ -93,3 +96,6 @@
 
 
 </STYLE>
+
+
+

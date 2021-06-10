@@ -1,3 +1,4 @@
+<% if user_signed_in? %>
 <details>
   <summary>Shopping cart</summary>
   <% if @cart.empty? %>
@@ -10,8 +11,10 @@
   </ul>
   <% end %>
 </details>
-
 <p id="notice"><%= notice %></p>
+<% else %>
+<p> Vous devez être connecté pour remplir votre panier</p>
+<% end %>
 
 
 <div class="tout1">
